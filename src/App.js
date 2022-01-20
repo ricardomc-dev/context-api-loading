@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createContext } from 'react'
 
 import Departments from './components/Departments'
 import Users from './components/Users'
@@ -6,7 +6,7 @@ import Loading from './components/Loading'
 
 import './index.css'
 
-const LoadingContext = React.createContext({
+const LoadingContext = createContext({
   loading: false,
   message: null,
   showLoading: () => { },

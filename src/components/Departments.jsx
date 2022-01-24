@@ -1,19 +1,12 @@
-import React, { Component, Fragment } from 'react'
- 
-import Loading from './Loading'
+import React, { Component } from 'react'
+import loadingContext from '../context/loadingContext';
  
 import { getDepartments } from '../services/api'
  
 class Departments extends Component {
-  constructor() {
-    super();
-    this.state = {
-      loading: false,
-    }
-  }
 
   getDepartments = async () => {
-    const { showLoading, hideLoading } = this.props;
+    const { showLoading, hideLoading } = this.context;
 
     showLoading('Carregando departamentos...')
 
@@ -25,14 +18,14 @@ class Departments extends Component {
   }
 
   render() {
-    const { loading } = this.state
-
     return (
-      <Fragment>
+      <>
         <button onClick={this.getDepartments}>Buscar departamentos</button>
-      </Fragment>
+      </>
     )
   }
 }
+
+Departments.contextType = loadingContext;
  
 export default Departments

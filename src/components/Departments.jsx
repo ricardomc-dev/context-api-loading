@@ -1,31 +1,28 @@
-import React, { Component } from 'react'
+import React, { useContext, useState } from 'react'
 import loadingContext from '../context/loadingContext';
  
 import { getDepartments } from '../services/api'
  
-class Departments extends Component {
+function Departments () {
+  const { showLoading, hideLoading, setDepartList, setUserList} = useContext(loadingContext);
+  
 
-  getDepartments = async () => {
-    const { showLoading, hideLoading } = this.context;
-
+  const handleDepartments = async () => {
     showLoading('Carregando departamentos...')
+    setUserList([])
 
     const response = await getDepartments().then(response => {
       hideLoading()
       return response
     })
-    console.log({ response })
+    setDepartList(response)
   }
 
-  render() {
-    return (
-      <>
-        <button onClick={this.getDepartments}>Buscar departamentos</button>
-      </>
-    )
-  }
+  return (
+    <button onClick={handleDepartments}>Buscar departamentos</button>
+  )
 }
 
-Departments.contextType = loadingContext;
+
  
 export default Departments

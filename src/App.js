@@ -2,6 +2,7 @@ import React from 'react'
 
 import Departments from './components/Departments'
 import Users from './components/Users'
+import ListItens from './components/ListItens'
 import Loading from './components/Loading'
 
 import './index.css'
@@ -16,6 +17,7 @@ function App () {
       <>
         <Users />
         <Departments />
+        <ListItens />
         <Loading />
       </>
     </ LoadingProvider>

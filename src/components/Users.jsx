@@ -5,22 +5,21 @@ import { getUsers } from "../services/api";
 
 
 function Users () {
-  const { showLoading, hideLoading } = useContext(loadingContext);
+  const { showLoading, hideLoading, setUserList, setDepartList } = useContext(loadingContext);
   
-  const getUsers = async () => {
+  const handleUsers = async () => {
     showLoading("Carregando usuários...")
+    setDepartList([])
     
     const response = await getUsers().then((response) => {
       hideLoading()
       return response;
     });
-    console.log({ response });
+    setUserList(response)
   };
     
   return (
-    <>
-      <button onClick={getUsers}>Buscar usuários</button>
-    </>
+      <button onClick={handleUsers}>Buscar usuários</button>
   );
   
 }
